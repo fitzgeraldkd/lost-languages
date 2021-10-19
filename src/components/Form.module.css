@@ -1,0 +1,35 @@
+.form-container {
+    position: sticky;
+    top: 10px;
+    background-color: rgb(231, 241, 241);
+    margin-right: 50px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #888;
+    padding: 5px;
+    text-align: center;
+}
+
+.form-container button {
+    margin-bottom: 15px;
+}
+
+.form-container textarea {
+    width:100%;
+    box-sizing: border-box;
+    margin: 10px 0;
+    resize: vertical;
+}
+
+.form-container img {
+    max-width: 300px;
+    max-height: 200px;
+}
+
+.translation-form {
+    text-align: left;
+}
+
+.translation-form select {
+    margin-left: 15px;
+}

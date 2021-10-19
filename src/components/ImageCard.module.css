@@ -1,0 +1,38 @@
+.translation-card {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #888;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    background-color: rgb(231, 241, 241);
+    box-shadow: 0 0 10px #888;
+}
+
+.translation-card:hover {
+    box-shadow: 0 0 15px #333;
+}
+
+.translation-image, .translation-submissions {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.translation-image {
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+.translation-submissions {
+    padding: 5px;
+    flex-grow: 1;
+}
+
+.translation-image {
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.translation-image img {
+    max-width: 300px;
+}
