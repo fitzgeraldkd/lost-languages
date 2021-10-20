@@ -1,9 +1,9 @@
 import { ChangeEvent, FormEvent, FormEventHandler, useState } from "react";
-import { TranslationType, ImageObj } from '../shared/types'
+import { TranslationType, ImageObj, LanguageType } from '../shared/types'
 import styles from './Form.module.css';
 
-function Form({ addTranslation, activeImage, handleNewImageClick }: 
-    {addTranslation: Function, activeImage: ImageObj | undefined, handleNewImageClick: FormEventHandler}) {
+function Form({ addTranslation, activeImage, handleNewImageClick, languages }: 
+    {addTranslation: Function, activeImage: ImageObj | undefined, handleNewImageClick: FormEventHandler, languages: LanguageType[]}) {
     const defaultFormData: TranslationType = {
         imageId: activeImage ? activeImage.id : '',
         firstLanguage: 'en',
@@ -33,13 +33,8 @@ function Form({ addTranslation, activeImage, handleNewImageClick }:
         setFormData(defaultFormData);
     }
 
-    const languages = [
-        {language: 'English', abbr: 'en'},
-        {language: 'Spanish', abbr: 'es'}
-    ];
-
     const languageJsx = languages.map(language => {
-        return <option value={language.abbr} key={language.abbr}>{language.language}</option>
+        return <option value={language.abbreviation} key={language.abbreviation}>{language.language}</option>
     })
 
     return (
