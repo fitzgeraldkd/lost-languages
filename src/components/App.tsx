@@ -9,9 +9,11 @@ import { randomNumber, sendRequest } from '../shared/utils';
 import { nanoid } from 'nanoid';
 import styles from './App.module.css';
 import Filters from './Filters';
+import About from './Modal/About';
 
 
 function App() {
+  const [modal, setModal] = useState<JSX.Element>();
   const [translations, setTranslations] = useState<TranslationType[]>([]);
   const [activeImage, setActiveImage] = useState<ImageObj>();
   const [languages, setLanguages] = useState<LanguageType[]>([
@@ -38,6 +40,10 @@ function App() {
     {language: 'Ukranian', abbreviation: 'uk', active: true},
     {language: 'Vietnamese', abbreviation: 'vi', active: true}
   ]);
+
+  const handleSetModal = (newModal: JSX.Element) => {
+    setModal(newModal);
+  }
 
   const handleLanguageActiveToggle = (abbreviation: LanguageAbbreviation) => {
     setLanguages(currentLanguages => currentLanguages.map(language => (
@@ -93,6 +99,8 @@ function App() {
 
   return (
     <div className="App">
+      { modal ? modal : <></> }
+      
       <Header />
       <section className={styles['section-main']}>
         <section className={styles['section-form']}>
@@ -103,6 +111,7 @@ function App() {
           <ImageCards translations={filteredTranslations} updateTranslation={updateTranslation} changeImage={changeImage} />
         </section>
       </section>
+      <button onClick={() => handleSetModal(<About handleSetModal={handleSetModal} />)}>Help</button>
     </div>
   );
 }
