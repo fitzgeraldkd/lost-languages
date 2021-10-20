@@ -33,3 +33,9 @@
 .translation-form select {
     margin-left: 15px;
 }
+
+@media only screen and (max-width: 992px) {
+    .form-container {
+        margin-right: 0;
+    }
+}

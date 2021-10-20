@@ -1,0 +1,31 @@
+.section-main {
+    width: 100%;
+    display: flex;
+}
+
+.section-form {
+    width: 400px;
+    display: inline-block;
+}
+
+.section-translations {
+    /* width: 100%; */
+    flex-grow: 1;
+    display: inline-block;
+    box-sizing: border-box;
+}  
+
+@media only screen and (max-width: 992px) {
+    .section-main {
+        display: block;
+    }
+
+    .section-form, .section-translations {
+        width: 100%;
+        display:block;
+    }
+
+    .section-form {
+        margin-bottom: 20px;
+    }
+}

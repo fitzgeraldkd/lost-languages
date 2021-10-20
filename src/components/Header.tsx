@@ -1,6 +1,10 @@
+import styles from './Header.module.css';
+
 function Header() {
     return (
-        <><h1>Lost Languages</h1></>
+        <div className={styles.header}>
+            <img className={styles.logo} src={process.env.PUBLIC_URL + '/lost-languages.png'} alt='Lost Languages' />
+        </div>
     );
 }
 

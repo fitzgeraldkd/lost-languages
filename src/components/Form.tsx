@@ -44,8 +44,13 @@ function Form({ addTranslation, activeImage, handleNewImageClick }:
 
     return (
         <div className={styles['form-container']}>
-            {activeImage ? <img src={activeImage.download_url} alt={`By ${activeImage.author}`} /> : <p>Loading Image...</p>}
-            <br />
+            {activeImage ? 
+                <>
+                    <img src={activeImage.download_url} alt={`By ${activeImage.author}`} />
+                    <div>Photo by <a href={activeImage.url} target='_blank' rel='noreferrer'>{activeImage.author}</a></div>
+                </> : 
+                <p>Loading Image...</p>}
+            {/* <br /> */}
             <button onClick={handleNewImageClick}>Get New Image</button>
             <br />
             <form className={styles['translation-form']} onSubmit={handleFormSubmit}>

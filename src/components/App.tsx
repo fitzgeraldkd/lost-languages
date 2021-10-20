@@ -6,6 +6,8 @@ import Form from './Form';
 import ImageCards from './ImageCards';
 import { TranslationType, LanguageOptions, ImageObj } from '../shared/types'
 import { randomNumber, sendRequest } from '../shared/utils';
+import { nanoid } from 'nanoid';
+import styles from './App.module.css';
 
 
 function App() {
@@ -13,7 +15,8 @@ function App() {
   const [activeImage, setActiveImage] = useState<ImageObj>();
 
   const addTranslation = (translation: TranslationType) => {
-    // give ID to new translation
+    // TODO: let API give translation ID
+    translation.id = nanoid();
     setTranslations(currentTranslations => [...currentTranslations, translation])
   }
 
@@ -45,6 +48,7 @@ function App() {
       const imageObj = imageList[randomNumber(0, imageList.length-1)];
       changeImage(imageObj);
     };
+    setActiveImage(undefined);
     sendRequest<ImageObj[]>(baseUrl + randomNumber(1, 10), callback);
   }, []);
 
@@ -61,8 +65,14 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Form addTranslation={addTranslation} activeImage={activeImage} handleNewImageClick={handleNewImageClick} />
-      <ImageCards translations={translations} updateTranslation={updateTranslation} />
+      <section className={styles['section-main']}>
+        <section className={styles['section-form']}>
+          <Form addTranslation={addTranslation} activeImage={activeImage} handleNewImageClick={handleNewImageClick} />
+        </section>
+        <section className={styles['section-translations']}>
+          <ImageCards translations={translations} updateTranslation={updateTranslation} changeImage={changeImage} />
+        </section>
+      </section>
     </div>
   );
 }

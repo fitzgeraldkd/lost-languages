@@ -1,7 +1,7 @@
 export type LanguageOptions = 'en' | 'es' | 'it' | 'fr';
 
 export type TranslationType = {
-  id?: number,
+  id?: string,
   imageId: string,
   firstLanguage: LanguageOptions,
   firstSentence: string,
