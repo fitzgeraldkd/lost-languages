@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "node dbserver.js",
-    "heroku-postbuild": "npm install && npm run build",
+    "heroku-postbuild": "npm install && npm run build && serve -s build",
     "server": "node dbserver.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
