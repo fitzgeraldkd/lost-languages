@@ -111,7 +111,7 @@ function App() {
           <ImageCards translations={filteredTranslations} updateTranslation={updateTranslation} changeImage={changeImage} />
         </section>
       </section>
-      <button onClick={() => handleSetModal(<About handleSetModal={handleSetModal} />)}>Help</button>
+      <button className={styles['about-button']} onClick={() => handleSetModal(<About handleSetModal={handleSetModal} />)}>?</button>
     </div>
   );
 }

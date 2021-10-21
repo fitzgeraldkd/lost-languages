@@ -45,7 +45,6 @@ function Form({ addTranslation, activeImage, handleNewImageClick, languages }:
                     <div>Photo by <a href={activeImage.url} target='_blank' rel='noreferrer'>{activeImage.author}</a></div>
                 </> : 
                 <p>Loading Image...</p>}
-            {/* <br /> */}
             <button onClick={handleNewImageClick}>Get New Image</button>
             <br />
             <form className={styles['translation-form']} onSubmit={handleFormSubmit}>
@@ -54,14 +53,14 @@ function Form({ addTranslation, activeImage, handleNewImageClick, languages }:
                     {languageJsx}
                 </select>
                 <br />
-                <textarea name='firstSentence' value={formData.firstSentence} onChange={handleFormChange} placeholder='Sentence in your first language.' />
+                <textarea name='firstSentence' value={formData.firstSentence} onChange={handleFormChange} placeholder='Write a sentence in your first language to describe the photo.' />
                 <br />
                 <label htmlFor="">Target Language:</label>
                 <select name='targetLanguage' value={formData.targetLanguage} onChange={handleFormChange}>
                     {languageJsx}
                 </select>
                 <br />
-                <textarea name='targetSentence' value={formData.targetSentence} onChange={handleFormChange} placeholder='Sentence in your target language.'/>
+                <textarea name='targetSentence' value={formData.targetSentence} onChange={handleFormChange} placeholder='Translate your description to a language of your choice.'/>
                 <br />
                 <input type="submit" value="Submit" />
             </form>
