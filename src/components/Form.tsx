@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, FormEventHandler, useState } from "react";
 import { TranslationType, ImageObj, LanguageType } from '../shared/types'
 import styles from './Form.module.css';
+import  {Client}  from 'pg';
 
 function Form({ addTranslation, activeImage, handleNewImageClick, languages }: 
     {addTranslation: Function, activeImage: ImageObj | undefined, handleNewImageClick: FormEventHandler, languages: LanguageType[]}) {
@@ -23,6 +24,15 @@ function Form({ addTranslation, activeImage, handleNewImageClick, languages }:
     const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (activeImage) {
+            const client = new Client({
+                connectionString: process.env.DATABASE_URL,
+                ssl: {
+                    rejectUnauthorized: false
+                }
+            });
+
+            // client.connect();
+
             // TODO: POST to database
             addTranslation({...formData, imageId: activeImage.id});
             resetForm();

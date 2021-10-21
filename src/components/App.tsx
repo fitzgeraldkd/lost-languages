@@ -10,6 +10,7 @@ import { nanoid } from 'nanoid';
 import styles from './App.module.css';
 import Filters from './Filters';
 import About from './Modal/About';
+import  {Client}  from 'pg';
 
 
 function App() {
@@ -40,6 +41,25 @@ function App() {
     {language: 'Ukranian', abbreviation: 'uk', active: true},
     {language: 'Vietnamese', abbreviation: 'vi', active: true}
   ]);
+
+  useEffect(() => {
+    const client = new Client({
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+          rejectUnauthorized: false
+      }
+    });
+
+    client.connect();
+
+    client.query('SELECT * FROM translations;', (err, res) => {
+      if (err) throw err;
+      for (const row of res.rows) {
+        console.log(JSON.stringify(row));
+      }
+      client.end();
+    });
+  }, []);
 
   const handleSetModal = (newModal: JSX.Element) => {
     setModal(newModal);
