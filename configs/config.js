@@ -7,7 +7,7 @@ config.node_env = process.env.NODE_ENV;
  
 // WEB config
 config.web = {};
-config.web.port = process.env.LOCAL_DB_PORT;
+config.web.port = process.env.PORT || process.env.LOCAL_DB_PORT;
  
 // DB config
 config.db = {};
