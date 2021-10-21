@@ -10,7 +10,7 @@ import { nanoid } from 'nanoid';
 import styles from './App.module.css';
 import Filters from './Filters';
 import About from './Modal/About';
-import  {Client}  from 'pg';
+// import  { Pool }  from 'pg';
 
 
 function App() {
@@ -43,22 +43,28 @@ function App() {
   ]);
 
   useEffect(() => {
-    const client = new Client({
-      connectionString: process.env.DATABASE_URL,
-      ssl: {
-          rejectUnauthorized: false
-      }
-    });
+    fetch('/api/translations')
+      .then(resp => resp.json())
+      .then(data => setTranslations(data));
+    // require("dotenv").config();
+    // console.log(process);
+    // const pool = new Pool({
+    //   connectionString: process.env.DATABASE_URL,
+    //   ssl: {
+    //       rejectUnauthorized: false
+    //   }
+    // });
+    // console.log(pool);
 
-    client.connect();
+    // pool.connect();
 
-    client.query('SELECT * FROM translations;', (err, res) => {
-      if (err) throw err;
-      for (const row of res.rows) {
-        console.log(JSON.stringify(row));
-      }
-      client.end();
-    });
+    // pool.query('SELECT * FROM translations;', (err, res) => {
+    //   if (err) throw err;
+    //   for (const row of res.rows) {
+    //     console.log(JSON.stringify(row));
+    //   }
+    //   pool.end();
+    // });
   }, []);
 
   const handleSetModal = (newModal: JSX.Element) => {
