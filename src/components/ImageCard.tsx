@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ImageObj, TranslationType } from "../shared/types";
 import { sendRequest } from "../shared/utils";
 import Translation from "./Translation";
-import styles from './ImageCard.module.css';
+import styled from 'styled-components';
 
 function ImageCard({ imageId, translations, updateTranslation, changeImage }: {imageId: string, translations: TranslationType[], updateTranslation: Function, changeImage: Function}) {
     const [imageData, setImageData] = useState<ImageObj>();
@@ -16,8 +16,8 @@ function ImageCard({ imageId, translations, updateTranslation, changeImage }: {i
     }, [imageId])
 
     return (
-        <article className={styles['translation-card']}>
-            <div className={styles['translation-image']}>
+        <TranslationCard>
+            <div className='translation-image'>
                 {imageData ? 
                     <>
                         <img src={imageData.download_url} alt={`By ${imageData.author}`} />
@@ -28,11 +28,47 @@ function ImageCard({ imageId, translations, updateTranslation, changeImage }: {i
                     </> :
                     null}
             </div>
-            <div className={styles['translation-submissions']}>
+            <div className='translation-submissions'>
                 {filteredTranslations.map(translation => <Translation key={translation.id} translation={translation} updateTranslation={updateTranslation} />)}
             </div>
-        </article>
+        </TranslationCard>
     );
 }
 
 export default ImageCard;
+
+const TranslationCard = styled.article`
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #888;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    background-color: rgb(231, 241, 241);
+    box-shadow: 0 0 10px #888;
+    transition: box-shadow 0.25s;
+
+    &:hover {
+        box-shadow: 0 0 15px #333;
+    }
+
+    .translation-image, .translation-submissions {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .translation-image {
+        text-align: center;
+        box-sizing: border-box;
+        padding: 5px;
+
+        img {
+            max-width: 300px;
+        }
+    }
+
+    .translation-submissions {
+        padding: 5px;
+        flex-grow: 1;
+    }
+`;

@@ -1,4 +1,3 @@
-import React from 'react';
 import Modal from './Modal';
 
 function About({ handleSetModal }: {handleSetModal: Function}) {

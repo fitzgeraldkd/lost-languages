@@ -1,5 +1,5 @@
 import { TranslationType } from "../shared/types";
-import styles from './Translation.module.css';
+import styled from 'styled-components'
 
 function Translation({ updateTranslation, translation, translation: { firstLanguage, firstSentence, targetLanguage, targetSentence, likes, dislikes } }: 
     {updateTranslation: Function, translation: TranslationType}) {
@@ -11,19 +11,38 @@ function Translation({ updateTranslation, translation, translation: { firstLangu
     };
 
     return (
-        <div className={styles['translation-subcard']}>
-            <div className={styles['translation-text']}>
-                <span className={styles['language-label']}>{firstLanguage}</span>
+        <TranslationSubcard>
+            <div>
+                <span className='language-label'>{firstLanguage}</span>
                 <span>{firstSentence}</span>
             </div>
-            <div className={styles['translation-text']}>
-                <span className={styles['language-label']}>{targetLanguage}</span>
+            <div>
+                <span className='language-label'>{targetLanguage}</span>
                 <span>{targetSentence}</span>
             </div>
             <button onClick={() => handleVoteClick('likes')}>{likes} 👍</button>
             {/* <button onClick={() => handleVoteClick('dislikes')}>{dislikes} 👎</button> */}
-        </div>
+        </TranslationSubcard>
     );
 }
 
 export default Translation;
+
+const TranslationSubcard = styled.div`
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #888;
+    border-radius: 2px;
+    background-color: white;
+
+    div {
+        margin-bottom: 10px;
+
+        .language-label {
+            background-color: rgb(195, 240, 184);
+            border-radius: 20% / 50%;
+            padding: 1px 5px;
+            margin-right: 5px;
+        }
+    }
+`;

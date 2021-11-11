@@ -1,15 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
-// import logo from '../logo.svg';
-import './App.css';
-import Header from './Header';
-import Form from './Form';
-import ImageCards from './ImageCards';
 import { TranslationType, LanguageType, ImageObj, LanguageAbbreviation } from '../shared/types'
 import { randomNumber, sendRequest } from '../shared/utils';
 import { nanoid } from 'nanoid';
-import styles from './App.module.css';
-import Filters from './Filters';
+import styled from 'styled-components';
+import Header from './Header';
 import About from './Modal/About';
+import Form from './Form';
+import Filters from './Filters';
+import ImageCards from './ImageCards';
 
 
 function App() {
@@ -98,22 +96,66 @@ function App() {
   ))
 
   return (
-    <div className="App">
+    <Document className="App">
       { modal ? modal : <></> }
       
       <Header />
-      <section className={styles['section-main']}>
-        <section className={styles['section-form']}>
+      <MainSection>
+        <FormSection>
           <Form addTranslation={addTranslation} activeImage={activeImage} handleNewImageClick={handleNewImageClick} languages={languages} />
-        </section>
-        <section className={styles['section-translations']}>
+        </FormSection>
+        <TranslationSection>
           <Filters usedLanguages={usedLanguages} handleLanguageActiveToggle={handleLanguageActiveToggle} />
           <ImageCards translations={filteredTranslations} updateTranslation={updateTranslation} changeImage={changeImage} />
-        </section>
-      </section>
-      <button className={styles['about-button']} onClick={() => handleSetModal(<About handleSetModal={handleSetModal} />)}>?</button>
-    </div>
+        </TranslationSection>
+      </MainSection>
+      <AboutButton onClick={() => handleSetModal(<About handleSetModal={handleSetModal} />)}>?</AboutButton>
+    </Document>
   );
 }
 
 export default App;
+
+const Document = styled.div`
+  padding: 15px;
+`;
+
+const MainSection = styled.section`
+  width: 100%;
+  display: flex;
+
+  @media only screen and (max-width: 992px) {
+    display: block;
+  }
+`;
+
+const FormSection = styled.section`
+  width: 400px;
+  display: inline-block;
+
+  @media only screen and (max-width: 992px) {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+`;
+
+const TranslationSection = styled.section`
+  flex-grow: 1;
+  display: inline-block;
+  box-sizing: border-box;
+
+  @media only screen and (max-width: 992px) {
+    width: 100%;
+    display: block;
+  }
+`;
+
+const AboutButton = styled.button`
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  border-radius: 50%;
+`;

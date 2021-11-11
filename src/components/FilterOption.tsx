@@ -1,15 +1,28 @@
-import React, { useState } from 'react';
+import styled from 'styled-components';
 import { LanguageType } from '../shared/types';
-import styles from './FilterOption.module.css';
 
 function FilterOption({ language, handleLanguageActiveToggle }: {language: LanguageType, handleLanguageActiveToggle: Function}) {
-    // const [active, setActive] = useState(true);
 
     return (
-        <button className={styles.button + (language.active ? ' ' + styles['button-active'] : '')} onClick={() => handleLanguageActiveToggle(language.abbreviation)}>
+        <FilterButton className={language.active ? 'filter-active' : ''} onClick={() => handleLanguageActiveToggle(language.abbreviation)}>
             {language.language}
-        </button>
+        </FilterButton>
     )
 };
 
 export default FilterOption;
+
+const FilterButton = styled.button`
+    margin-left: 10px;
+    background-color: rgb(177, 224, 238);
+    opacity: 0.6;
+    border: 1px solid black;
+
+    &:hover {
+        box-shadow: 0 0 3px;
+    }
+
+    &.filter-active {
+        opacity: 1;
+    }
+`;

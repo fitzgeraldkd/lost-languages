@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, FormEventHandler, useState } from "react";
+import styled from "styled-components";
 import { TranslationType, ImageObj, LanguageType } from '../shared/types'
-import styles from './Form.module.css';
 
 function Form({ addTranslation, activeImage, handleNewImageClick, languages }: 
     {addTranslation: Function, activeImage: ImageObj | undefined, handleNewImageClick: FormEventHandler, languages: LanguageType[]}) {
@@ -38,7 +38,7 @@ function Form({ addTranslation, activeImage, handleNewImageClick, languages }:
     })
 
     return (
-        <div className={styles['form-container']}>
+        <FormContainer>
             {activeImage ? 
                 <>
                     <img src={activeImage.download_url} alt={`By ${activeImage.author}`} />
@@ -47,7 +47,7 @@ function Form({ addTranslation, activeImage, handleNewImageClick, languages }:
                 <p>Loading Image...</p>}
             <button onClick={handleNewImageClick}>Get New Image</button>
             <br />
-            <form className={styles['translation-form']} onSubmit={handleFormSubmit}>
+            <form onSubmit={handleFormSubmit}>
                 <label htmlFor="">First Language:</label>
                 <select name="firstLanguage" value={formData.firstLanguage} onChange={handleFormChange}>
                     {languageJsx}
@@ -64,8 +64,48 @@ function Form({ addTranslation, activeImage, handleNewImageClick, languages }:
                 <br />
                 <input type="submit" value="Submit" />
             </form>
-        </div>
+        </FormContainer>
     );
 }
 
 export default Form;
+
+const FormContainer = styled.div`
+    position: sticky;
+    top: 10px;
+    background-color: rgb(231, 241, 241);
+    margin-right: 50px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #888;
+    padding: 5px;
+    text-align: center;
+
+    @media only screen and (max-width: 992px) {
+        margin-right: 0;
+    }
+
+    img {
+        max-width: 300px;
+        max-height: 200px;
+    }
+
+    button {
+        margin-bottom: 15px;
+    }
+
+    form {
+        text-align: left;
+    
+        select {
+            margin-left: 15px;
+        }
+
+        textarea {
+            width:100%;
+            box-sizing: border-box;
+            margin: 10px 0;
+            resize: vertical;
+        }
+    }
+`;

@@ -1,11 +1,19 @@
-import styles from './Header.module.css';
+import styled from 'styled-components';
 
 function Header() {
     return (
-        <div className={styles.header}>
-            <img className={styles.logo} src={process.env.PUBLIC_URL + '/lost-languages.png'} alt='Lost Languages' />
-        </div>
+        <HeaderContainer>
+            <img src={process.env.PUBLIC_URL + '/lost-languages.png'} alt='Lost Languages' />
+        </HeaderContainer>
     );
 }
 
 export default Header;
+
+const HeaderContainer = styled.div`
+    text-align: center;
+    img {
+        max-height: 200px;
+        margin-bottom: 20px;
+    }
+`;

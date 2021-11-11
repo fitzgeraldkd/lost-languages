@@ -1,15 +1,28 @@
+import styled from "styled-components";
 import { LanguageType } from "../shared/types";
 import FilterOption from "./FilterOption";
-import styles from './Filters.module.css';
 
 function Filters({ usedLanguages, handleLanguageActiveToggle }: {usedLanguages: LanguageType[], handleLanguageActiveToggle: Function}) {
     if (usedLanguages.length === 0) return null;
     return (
-        <div className={styles['filter-container']}>
+        <FilterContainer>
             Filters: 
             {usedLanguages.map(language => <FilterOption key={language.abbreviation} language={language} handleLanguageActiveToggle={handleLanguageActiveToggle} />)}
-        </div>
+        </FilterContainer>
     );
 }
 
 export default Filters;
+
+const FilterContainer = styled.div`
+    position: sticky;
+    top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #888;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: rgb(231,241,241);
+    box-shadow: 0 0 10px #888;
+    padding: 10px;
+`;
