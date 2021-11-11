@@ -21,7 +21,7 @@ function Translation({ updateTranslation, translation, translation: { firstLangu
                 <span>{targetSentence}</span>
             </div>
             <button onClick={() => handleVoteClick('likes')}>{likes} 👍</button>
-            <button onClick={() => handleVoteClick('dislikes')}>{dislikes} 👎</button>
+            {/* <button onClick={() => handleVoteClick('dislikes')}>{dislikes} 👎</button> */}
         </div>
     );
 }
